@@ -42,9 +42,9 @@ public class MouseMover extends javax.swing.JFrame {
         labelMovimiento.setForeground(new java.awt.Color(204, 0, 0));
 
         botonCancelar.setText("Stop Mouse Movements");
-        botonCancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonCancelarActionPerformed(evt);
+        botonCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonCancelarMouseClicked(evt);
             }
         });
 
@@ -92,12 +92,14 @@ public class MouseMover extends javax.swing.JFrame {
         botonCancelar.setEnabled(true);
     }//GEN-LAST:event_botonIniciarActionPerformed
 
-    private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
-        hiloMovimiento.interrupt();
-        botonIniciar.setEnabled(true);
-        botonCancelar.setEnabled(false);
-        labelMovimiento.setText("");
-    }//GEN-LAST:event_botonCancelarActionPerformed
+    private void botonCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonCancelarMouseClicked
+        if (evt.getClickCount() == 2) {
+            hiloMovimiento.interrupt();
+            botonIniciar.setEnabled(true);
+            botonCancelar.setEnabled(false);
+            labelMovimiento.setText("");
+        }
+    }//GEN-LAST:event_botonCancelarMouseClicked
 
     /**
      * @param args the command line arguments
